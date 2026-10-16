@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroVolt — Centro de Operações</title>
+<style>
+:root{--navy:#071b2b;--navy2:#0d2b3c;--green:#16a36a;--lime:#b9f36b;--ink:#152b3b;--muted:#6c8090;--line:#dce6eb;--bg:#f3f7f9;--red:#e7444d;--amber:#eaa32b;--blue:#2785ce}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}button{font:inherit;cursor:pointer;border:0}.app{min-height:100vh;display:grid;grid-template-columns:238px 1fr}.sidebar{background:linear-gradient(180deg,#061a29,#0b2c3d);color:#eaf3f6;padding:24px 15px;display:flex;flex-direction:column;gap:24px}.brand{display:flex;gap:11px;align-items:center;padding:0 8px}.brandmark{width:43px;height:43px;border-radius:14px;background:var(--lime);color:#0a3028;display:grid;place-items:center;font-size:25px;font-weight:900;clip-path:polygon(35% 0,100% 0,65% 44%,90% 44%,24% 100%,42% 57%,15% 57%)}.brand h1{font-size:22px;letter-spacing:-.7px;margin:0}.brand small{display:block;color:#a9c0cc;font-size:11px;margin-top:4px}.nav{display:grid;gap:7px}.nav button{display:flex;align-items:center;gap:12px;text-align:left;color:#c7d8e0;background:transparent;padding:12px 13px;border-radius:10px;font-size:14px}.nav button.active,.nav button:hover{background:#14513f;color:#fff}.nav .ico{width:22px;text-align:center;font-size:18px}.sidebar-bottom{margin-top:auto;border:1px solid #315b6d;border-radius:12px;padding:14px;font-size:12px;color:#b6cad3}.online-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4cdb8b;margin-right:7px}.main{min-width:0;padding:24px 26px 30px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);font-weight:800}.topbar h2{margin:5px 0 0;font-size:26px;letter-spacing:-.8px}.top-actions{display:flex;align-items:center;gap:10px}.pill{border:1px solid var(--line);background:white;padding:10px 13px;border-radius:10px;color:#476171;font-size:12px}.profile{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:12px;font-size:12px}.avatar{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:#dceaf0;font-size:17px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:17px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px;display:flex;gap:13px;align-items:center;box-shadow:0 3px 12px #17384b06}.stat-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;font-size:21px;background:#e9f7f0}.stat-icon.red{background:#fff0f0}.stat-icon.blue{background:#eaf4fc}.stat-icon.amber{background:#fff6e5}.stat-label{font-size:12px;color:var(--muted)}.stat-num{font-size:27px;font-weight:800;letter-spacing:-.8px;margin:4px 0}.stat-note{font-size:11px;color:var(--green)}.stat-note.warn{color:var(--red)}.layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,.85fr);gap:17px}.panel{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #17384b05}.panel-head{display:flex;align-items:center;justify-content:space-between;padding:17px 18px;border-bottom:1px solid #edf2f5}.panel-head h3{font-size:14px;margin:0}.panel-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.map-controls{display:flex;gap:6px}.map-controls button{background:#f0f5f7;color:#55707f;padding:7px 10px;border-radius:7px;font-size:11px}.map-controls button.active{background:#e1f6eb;color:#087b4b}.map{height:395px;position:relative;overflow:hidden;background:#c8d9bb}.map-art{position:absolute;inset:0;background:
+linear-gradient(23deg,transparent 0 25%,#a9c79b 25.2% 36%,transparent 36.2%),
+linear-gradient(145deg,transparent 0 16%,#e5d8ae 16.2% 29%,transparent 29.2%),
+linear-gradient(75deg,transparent 0 45%,#b8d3a6 45.2% 63%,transparent 63.2%),
+linear-gradient(160deg,transparent 0 66%,#d7c99d 66.2% 82%,transparent 82.2%),
+repeating-linear-gradient(20deg,#d7e4c9 0 35px,#c6d9b6 36px 39px,#dce7cd 40px 70px)}
+.map-art:before{content:"";position:absolute;inset:-30px;background:repeating-linear-gradient(130deg,transparent 0 88px,#b3cda4 90px 94px,transparent 97px 155px);opacity:.8}
+.river{position:absolute;left:38%;top:-30%;height:160%;width:36px;background:#a7d5e7;transform:rotate(24deg);border:5px solid #c4e4ee;border-radius:50%}.road{position:absolute;height:4px;background:#f9f6e8;border:1px solid #c6bfa7;transform-origin:left center;border-radius:5px}.road.r1{width:110%;left:-4%;top:67%;transform:rotate(-22deg)}.road.r2{width:90%;left:25%;top:4%;transform:rotate(54deg)}.road.r3{width:85%;left:5%;top:27%;transform:rotate(18deg)}.map-label{position:absolute;font-size:10px;color:#42604a;background:#ffffffc9;border:1px solid #d4e0c8;border-radius:5px;padding:4px 7px}.line{position:absolute;height:5px;border-radius:10px;transform-origin:left center;box-shadow:0 0 0 2px #ffffff70}.line.good{background:#18a96c}.line.warn{background:#edb43a}.line.bad{height:6px;background:#e7444d;box-shadow:0 0 0 3px #fff8}.node{position:absolute;width:24px;height:24px;border-radius:50%;border:3px solid white;background:#17a66a;color:white;display:grid;place-items:center;font-size:10px;font-weight:800;box-shadow:0 2px 7px #153a2c55;cursor:pointer;z-index:3}.node.alert{background:var(--red);width:30px;height:30px;animation:pulse 1.8s infinite}.node.warning{background:var(--amber)}@keyframes pulse{50%{box-shadow:0 0 0 8px #e7444d26}}.map-tooltip{position:absolute;left:49%;top:35%;z-index:4;background:#d92f3d;color:white;padding:9px 12px;border-radius:9px;font-size:11px;font-weight:700;box-shadow:0 5px 15px #1234}.map-tooltip small{display:block;font-weight:400;margin-top:4px}.map-legend{position:absolute;left:14px;bottom:14px;background:#ffffffed;border:1px solid #dce6dc;border-radius:10px;padding:10px 12px;display:flex;gap:13px;flex-wrap:wrap;font-size:10px;color:#4f6874}.legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.map-bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:13px}.mini{border:1px solid var(--line);border-radius:11px;padding:13px}.mini h4{font-size:12px;margin:0 0 10px}.fault-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:12px}.status{font-size:10px;border-radius:20px;padding:5px 8px;background:#fff0f0;color:#c8313c;white-space:nowrap}.mini p{font-size:11px;color:var(--muted);margin:8px 0 0;line-height:1.5}.rightcol{display:grid;gap:15px;align-content:start}.alert-list{padding:0 16px}.alert-row{display:flex;gap:11px;padding:14px 0;border-bottom:1px solid #edf2f5}.alert-row:last-child{border-bottom:0}.alert-symbol{width:30px;height:30px;border-radius:10px;background:#fff0f0;color:var(--red);display:grid;place-items:center;flex-shrink:0}.alert-symbol.amber{background:#fff5df;color:#bd8116}.alert-symbol.green{background:#e4f7ec;color:#138653}.alert-copy{min-width:0;flex:1}.alert-copy strong{display:block;font-size:11px;margin:1px 0 5px}.alert-copy p{font-size:10px;color:var(--muted);margin:0;line-height:1.5}.tag{font-size:9px;border-radius:20px;padding:5px 7px;background:#fff0f0;color:#c8313c;height:max-content;white-space:nowrap}.tag.amber{background:#fff4dc;color:#a56b08}.tag.green{background:#e4f7ec;color:#11824f}.machine{padding:15px}.machine-top{display:flex;gap:12px;align-items:center}.machine-img{height:74px;width:90px;border-radius:10px;background:linear-gradient(160deg,#dce9d5,#a9c49d);display:grid;place-items:center;font-size:32px;flex-shrink:0}.machine-info{flex:1}.machine-info strong{font-size:12px}.machine-info p{font-size:10px;color:var(--green);margin:6px 0}.battery-row{display:flex;justify-content:space-between;font-size:11px;margin:15px 0 7px}.bar{height:8px;border-radius:20px;background:#e7eef0;overflow:hidden}.bar span{display:block;width:80%;height:100%;background:linear-gradient(90deg,#18a76a,#8ad64e);border-radius:20px;transition:width .3s}.machine-foot{display:flex;justify-content:space-between;margin-top:13px;font-size:10px;color:var(--muted)}.team{padding:14px 16px;display:flex;gap:11px;align-items:center}.team-icon{width:39px;height:39px;border-radius:12px;background:#e7f3fc;color:#247db8;display:grid;place-items:center;font-size:20px}.team-info{flex:1}.team-info strong{font-size:11px}.team-info p{font-size:10px;color:var(--green);margin:5px 0 0}.team-eta{font-size:10px;color:#287eb4;background:#eaf5fd;padding:6px 8px;border-radius:20px}.actionbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.primary{background:#087b50;color:white;padding:11px 15px;border-radius:9px;font-size:12px;font-weight:700;box-shadow:0 4px 10px #087b5020}.secondary{background:white;color:#37566a;border:1px solid var(--line);padding:10px 14px;border-radius:9px;font-size:12px}.toast{position:fixed;right:24px;bottom:24px;background:#092b3b;color:white;padding:14px 18px;border-radius:12px;box-shadow:0 12px 35px #001b2d35;font-size:13px;display:none;z-index:10;max-width:340px}.toast.show{display:block;animation:fade .25s}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.mobile-menu{display:none}
+@media(max-width:1100px){.app{grid-template-columns:200px 1fr}.main{padding:20px}.stats{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.rightcol{grid-template-columns:repeat(2,minmax(0,1fr))}.rightcol .panel:first-child{grid-row:span 2}}
+@media(max-width:700px){.app{display:block}.sidebar{display:none}.main{padding:15px}.topbar{align-items:flex-start}.topbar h2{font-size:21px}.profile{display:none}.mobile-menu{display:inline-block}.stats{gap:8px}.stat{padding:12px;gap:9px}.stat-icon{width:34px;height:34px;font-size:17px}.stat-num{font-size:22px}.stat-label{font-size:10px}.layout{display:block}.rightcol{display:grid;grid-template-columns:1fr;margin-top:14px}.map{height:320px}.map-bottom{grid-template-columns:1fr}.pill{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">ϟ</div><div><h1>AgroVolt</h1><small>Energia e Conectividade no Campo</small></div></div>
+  <nav class="nav">
+    <button class="active" data-page="Mapa"><span class="ico">▦</span>Mapa operacional</button>
+    <button data-page="Ocorrências"><span class="ico">⚠</span>Ocorrências <span style="margin-left:auto;color:#ff7379">2</span></button>
+    <button data-page="Equipamentos"><span class="ico">▣</span>Equipamentos</button>
+    <button data-page="Propriedades"><span class="ico">⌂</span>Propriedades</button>
+    <button data-page="Equipes"><span class="ico">♟</span>Equipes</button>
+    <button data-page="Relatórios"><span class="ico">▤</span>Relatórios</button>
+    <button data-page="Configurações"><span class="ico">⚙</span>Configurações</button>
+  </nav>
+  <div class="sidebar-bottom"><div><span class="online-dot"></span><b>Sistema operacional</b></div><p style="margin:10px 0 0;line-height:1.6">Última atualização<br><strong id="clock">Agora</strong><br><span style="color:#7fa2b3">Modo de demonstração</span></p></div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div><div class="eyebrow">Centro de operações · Demo interativa</div><h2 id="pageTitle">Visão geral da rede rural</h2></div>
+    <div class="top-actions"><button class="pill" id="simulateTop">＋ Simular falha</button><div class="profile"><div class="avatar">👤</div><div><b>Equipe Operacional</b><div style="color:#7a8d99;margin-top:3px">Central de monitoramento</div></div></div></div>
+  </header>
+  <section class="stats">
+    <div class="stat"><div class="stat-icon">⚡</div><div><div class="stat-label">Postes monitorados</div><div class="stat-num" id="poleCount">128</div><div class="stat-note">● Rede cadastrada</div></div></div>
+    <div class="stat"><div class="stat-icon red">⚠</div><div><div class="stat-label">Falhas em aberto</div><div class="stat-num" id="faultCount">2</div><div class="stat-note warn" id="faultNote">↑ 1 nova ocorrência</div></div></div>
+    <div class="stat"><div class="stat-icon blue">🚚</div><div><div class="stat-label">Equipes mobilizadas</div><div class="stat-num" id="teamCount">1</div><div class="stat-note">Equipe Norte em rota</div></div></div>
+    <div class="stat"><div class="stat-icon amber">⌂</div><div><div class="stat-label">Propriedades afetadas</div><div class="stat-num" id="farmCount">7</div><div class="stat-note warn">Prioridade: produção</div></div></div>
+  </section>
+  <section class="layout">
+    <div class="leftcol">
+      <div class="panel">
+        <div class="panel-head"><div><h3>Mapa da rede elétrica</h3><p>Trechos, sensores, propriedades e equipes</p></div><div class="map-controls"><button class="active" id="mapBtn">Mapa</button><button id="satBtn">Satélite</button></div></div>
+        <div class="map" id="map">
+          <div class="map-art" id="mapArt"></div><div class="river"></div>
+          <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div>
+          <span class="map-label" style="left:8%;top:12%">ESTRADA RURAL NORTE</span><span class="map-label" style="left:67%;top:74%">LINHA SÃO JOSÉ</span>
+          <div class="line good" style="left:14%;top:17%;width:26%;transform:rotate(48deg)"></div>
+          <div class="line good" style="left:14%;top:17%;width:37%;transform:rotate(14deg)"></div>
+          <div class="line good" style="left:40%;top:27%;width:32%;transform:rotate(28deg)"></div>
+          <div class="line good" style="left:39%;top:28%;width:43%;transform:rotate(76deg)"></div>
+          <div class="line warn" style="left:17%;top:61%;width:32%;transform:rotate(-28deg)"></div>
+          <div class="line bad" id="brokenLine" style="left:45%;top:36%;width:25%;transform:rotate(47deg)"></div>
+          <div class="node" style="left:12%;top:14%" title="Poste R-010">10</div><div class="node" style="left:24%;top:22%" title="Poste R-016">16</div><div class="node" style="left:38%;top:27%" title="Poste R-031">31</div><div class="node" style="left:51%;top:34%" title="Poste R-040">40</div><div class="node alert" id="faultNode" style="left:61%;top:47%" title="Poste R-042">!</div><div class="node" style="left:72%;top:58%" title="Poste R-049">49</div><div class="node warning" style="left:81%;top:31%" title="Poste R-017">17</div><div class="node" style="left:28%;top:65%" title="Poste R-060">60</div><div class="node" style="left:52%;top:78%" title="Poste R-074">74</div><div class="node" style="left:82%;top:78%" title="Poste R-091">91</div>
+          <div class="map-tooltip" id="mapTooltip">⚠ Poste R-042 <small>Falha detectada · trecho provável</small></div>
+          <div class="map-label" style="left:12%;top:47%">Fazenda São José</div><div class="map-label" style="left:70%;top:19%">Granja Boa Vista</div><div class="map-label" style="left:43%;top:84%">Sítio Esperança</div>
+          <div class="map-legend"><span><i class="legend-dot" style="background:#18a96c"></i>Normal</span><span><i class="legend-dot" style="background:#eaa32b"></i>Alerta</span><span><i class="legend-dot" style="background:#e7444d"></i>Falha</span><span>┄ Trecho afetado</span></div>
+        </div>
+        <div class="map-bottom">
+          <div class="mini"><h4>⚠ Ocorrência selecionada</h4><div class="fault-title" id="selectedFault">Poste R-042 <span class="status">Falha detectada</span></div><p id="faultDetails">14:32 · Perda de tensão identificada<br>Localização cadastrada: -26.876, -52.404<br>Trecho estimado: entre R-040 e R-046</p><button class="secondary" style="margin-top:12px" id="assignBtn">Designar equipe →</button></div>
+          <div class="mini"><h4>⌂ Propriedades na área</h4><div class="fault-title">🐄 Fazenda São José</div><p>Ordenha e resfriamento de leite</p><div class="fault-title" style="margin-top:10px">🏠 Granja Boa Vista</div><p>Ventilação e alimentação automatizada</p><div class="fault-title" style="margin-top:10px">💧 Sítio Esperança</div><p>Bombas de água e irrigação</p></div>
+        </div>
+      </div>
+      <div class="actionbar"><button class="primary" id="simulateBtn">＋ Simular nova falha de sensor</button><button class="secondary" id="restoreBtn">✓ Simular energia restabelecida</button><button class="secondary" id="reportBtn">▤ Gerar resumo da ocorrência</button></div>
+    </div>
+    <aside class="rightcol">
+      <div class="panel"><div class="panel-head"><div><h3>Alertas recentes</h3><p>Eventos recebidos pela plataforma</p></div><button class="secondary" id="allAlerts">Ver todos</button></div>
+        <div class="alert-list" id="alertList">
+          <div class="alert-row"><div class="alert-symbol">⚠</div><div class="alert-copy"><strong>Falha detectada — Poste R-042</strong><p>Trecho rural Norte · 14:32<br>Perda de tensão identificada</p></div><span class="tag">Aberta</span></div>
+          <div class="alert-row"><div class="alert-symbol amber">!</div><div class="alert-copy"><strong>Alerta — Poste R-017</strong><p>Trecho rural Leste · 12:18<br>Oscilação de tensão</p></div><span class="tag amber">Análise</span></div>
+          <div class="alert-row"><div class="alert-symbol green">✓</div><div class="alert-copy"><strong>Ocorrência — Poste R-019</strong><p>Trecho rural Sul · 10:45<br>Equipe designada</p></div><span class="tag green">Atendimento</span></div>
+          <div class="alert-row"><div class="alert-symbol green">✓</div><div class="alert-copy"><strong>Energia restabelecida — R-003</strong><p>Trecho rural Oeste · 08:12<br>Sem anomalias</p></div><span class="tag green">Concluída</span></div>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h3>Casa de máquinas</h3><p>Monitoramento de energia reserva</p></div><span class="tag green">Operacional</span></div>
+        <div class="machine"><div class="machine-top"><div class="machine-img">🏭</div><div class="machine-info"><strong>Unidade de backup rural</strong><p>● Geradores disponíveis</p><span style="font-size:10px;color:#6c8090">2 de 2 unidades online</span></div></div><div class="battery-row"><span>Carga das baterias</span><b id="batteryPct">80%</b></div><div class="bar"><span id="batteryBar"></span></div><div class="machine-foot"><span>Autonomia estimada</span><b id="autonomy">16 h</b></div><button class="secondary" style="width:100%;margin-top:13px" id="batteryBtn">Simular consumo de energia</button></div>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h3>Equipe de manutenção</h3><p>Despacho operacional</p></div><button class="secondary" id="teamBtn">Detalhes</button></div>
+        <div class="team"><div class="team-icon">🚚</div><div class="team-info"><strong>Equipe 01 — Norte</strong><p id="teamStatus">● Em deslocamento</p><p style="color:#758a97">Destino: Poste R-042</p></div><span class="team-eta" id="eta">ETA 16 min</span></div>
+      </div>
+    </aside>
+  </section>
+  <footer style="padding:18px 2px 0;color:#8a9aa4;font-size:10px">AGROVOLT · Protótipo conceitual para apresentação · Todos os dados e eventos são simulados.</footer>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+let faults=2, battery=80, assigned=false, newFaultNo=42;
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),3300)}
+function timeNow(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}
+function addAlert(title,detail,type='red',tag='Aberta'){
+ const row=document.createElement('div');row.className='alert-row';
+ const sym=type==='red'?'⚠':type==='amber'?'!':'✓';
+ row.innerHTML=`<div class="alert-symbol ${type==='red'?'':type}">${sym}</div><div class="alert-copy"><strong>${title}</strong><p>${detail}</p></div><span class="tag ${type==='red'?'':type}">${tag}</span>`;
+ $('alertList').prepend(row);
+}
+function simulateFault(){
+ newFaultNo++;faults++;$('faultCount').textContent=faults;$('faultNote').textContent='↑ Nova ocorrência recebida';
+ const code='R-'+String(newFaultNo).padStart(3,'0'),time=timeNow();
+ $('selectedFault').innerHTML=`Poste ${code} <span class="status">Falha detectada</span>`;
+ $('faultDetails').innerHTML=`${time} · Anomalia detectada pelo sensor<br>Coordenada de demonstração cadastrada<br>Trecho afetado aguardando confirmação`;
+ $('mapTooltip').innerHTML=`⚠ Poste ${code}<small>Nova falha · aguardando avaliação</small>`;
+ $('mapTooltip').style.left=(38+Math.random()*20)+'%';$('mapTooltip').style.top=(27+Math.random()*24)+'%';
+ const node=document.createElement('div');node.className='node alert';node.textContent='!';node.style.left=(45+Math.random()*27)+'%';node.style.top=(35+Math.random()*38)+'%';node.title='Poste '+code;$('map').appendChild(node);
+ $('brokenLine').style.width=(18+Math.random()*15)+'%';
+ addAlert('Nova falha — Poste '+code,'Trecho rural · '+time+'<br>Evento simulado recebido','red','Aberta');
+ toast('Alerta recebido! Poste '+code+' sinalizou uma anomalia.');assigned=false;$('teamStatus').textContent='● Aguardando despacho';$('eta').textContent='Não atribuído';
+}
+$('simulateBtn').addEventListener('click',simulateFault);$('simulateTop').addEventListener('click',simulateFault);
+$('assignBtn').addEventListener('click',()=>{assigned=true;$('teamStatus').textContent='● Equipe designada';$('eta').textContent='Em rota';$('teamCount').textContent='1';addAlert('Equipe designada — ocorrência selecionada','Despacho confirmado · '+timeNow(),'green','Em rota');toast('Equipe de manutenção designada para a ocorrência selecionada.')});
+$('restoreBtn').addEventListener('click',()=>{if(faults>0)faults--; $('faultCount').textContent=faults;$('faultNote').textContent=faults?'Ocorrências ainda em aberto':'✓ Sem novas falhas simuladas';$('mapTooltip').innerHTML='✓ Energia restabelecida<small>Ocorrência encerrada no protótipo</small>';$('mapTooltip').style.background='#138653';$('brokenLine').style.background='#18a96c';addAlert('Energia restabelecida — trecho rural','Restabelecimento simulado · '+timeNow(),'green','Concluída');toast('Restabelecimento simulado. O painel foi atualizado.')});
+$('batteryBtn').addEventListener('click',()=>{battery=Math.max(10,battery-15);$('batteryPct').textContent=battery+'%';$('batteryBar').style.width=battery+'%';$('autonomy').textContent=Math.round(battery/5)+' h';if(battery<=25)toast('Atenção: bateria baixa. Priorize as cargas essenciais.');else toast('Consumo simulado. Carga atual: '+battery+'%.')});
+$('reportBtn').addEventListener('click',()=>{const report=`AGROVOLT — RESUMO DA OCORRÊNCIA\nGerado: ${new Date().toLocaleString('pt-BR')}\nFalhas em aberto (simuladas): ${faults}\nBateria de reserva: ${battery}%\nEquipe designada: ${assigned?'Sim':'Aguardando despacho'}\n\nProtótipo demonstrativo. Dados não representam uma rede real.`;const blob=new Blob([report],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='relatorio-agrovolt.txt';a.click();URL.revokeObjectURL(a.href);toast('Resumo gerado para demonstração.')});
+$('allAlerts').addEventListener('click',()=>toast('Exibindo todos os alertas disponíveis no painel demonstrativo.'));
+$('teamBtn').addEventListener('click',()=>toast('Equipe 01 — Norte · Status: '+$('teamStatus').textContent.replace('● ','')+' · Destino: ocorrência selecionada.'));
+document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const page=btn.dataset.page;$('pageTitle').textContent=page==='Mapa'?'Visão geral da rede rural':page+' — AgroVolt';if(page!=='Mapa')toast('Seção '+page+' selecionada. Nesta demonstração, o painel principal permanece visível.');}));
+$('satBtn').addEventListener('click',()=>{$('satBtn').classList.add('active');$('mapBtn').classList.remove('active');$('mapArt').style.filter='saturate(.7) contrast(1.08) brightness(.87)';$('map').style.background='#829b78';toast('Camada satélite ilustrativa ativada.')});
+$('mapBtn').addEventListener('click',()=>{$('mapBtn').classList.add('active');$('satBtn').classList.remove('active');$('mapArt').style.filter='none';$('map').style.background='#c8d9bb';toast('Camada de mapa ilustrativo ativada.')});
+setInterval(()=>$('clock').textContent=timeNow(),15000);$('clock').textContent=timeNow();
+</script>
+</body>
+</html>
